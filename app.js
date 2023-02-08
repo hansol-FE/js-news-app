@@ -30,14 +30,15 @@ window.addEventListener("hashchange", () => {
 });
 
 for (let i = 0; i < 10; i++) {
-  const li = document.createElement("li");
-  const a = document.createElement("a");
+  const div = document.createElement("div");
 
-  a.href = `#${newsFeed[i].id}`;
-  a.innerHTML = `${newsFeed[i].title} 댓글(${newsFeed[i].comments_count})`;
+  div.innerHTML = `
+    <li>
+        <a href="#${newsFeed[i].id}"> ${newsFeed[i].title} 댓글(${newsFeed[i].comments_count})</a>
+    </li>
+  `;
 
-  li.appendChild(a);
-  ul.appendChild(li);
+  ul.appendChild(div.firstElementChild);
 }
 
 container.appendChild(ul);
