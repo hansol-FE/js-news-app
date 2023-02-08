@@ -9,7 +9,9 @@ ajax.send();
 const newsFeed = JSON.parse(ajax.response);
 console.log("newsFeed", newsFeed);
 
+const container = document.getElementById("root");
 const ul = document.createElement("ul");
+const content = document.createElement("div");
 
 window.addEventListener("hashchange", () => {
   console.log("hash 변경됨");
@@ -22,6 +24,9 @@ window.addEventListener("hashchange", () => {
   const newsContent = JSON.parse(ajax.response);
 
   console.log("newsContent", newsContent);
+  const title = document.createElement("h1");
+  title.innerHTML = newsContent.title;
+  content.appendChild(title);
 });
 
 for (let i = 0; i < 10; i++) {
@@ -35,4 +40,5 @@ for (let i = 0; i < 10; i++) {
   ul.appendChild(li);
 }
 
-document.getElementById("root").appendChild(ul);
+container.appendChild(ul);
+container.appendChild(content);
