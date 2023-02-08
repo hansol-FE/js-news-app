@@ -21,27 +21,26 @@ window.addEventListener("hashchange", () => {
   console.log("hash 변경됨");
   // id 가져오기
   const id = location.hash.substring(1);
-
   // content 가져오기
   const newsContent = getData(CONTENT_URL.replace("@id", id));
 
-  console.log("newsContent", newsContent);
-  const title = document.createElement("h1");
-  title.innerHTML = newsContent.title;
-  content.appendChild(title);
+  container.innerHTML = `
+        <h1>${newsContent.title}</h1>
+        <div>
+            <a href="#">목록으로</a>
+        </div>
+    `;
 });
 
+const newsList = [];
+newsList.push("<ul>");
+
 for (let i = 0; i < 10; i++) {
-  const div = document.createElement("div");
-
-  div.innerHTML = `
+  newsList.push(`
     <li>
-        <a href="#${newsFeed[i].id}"> ${newsFeed[i].title} 댓글(${newsFeed[i].comments_count})</a>
-    </li>
-  `;
-
-  ul.appendChild(div.firstElementChild);
+    <a href="#${newsFeed[i].id}"> ${newsFeed[i].title} 댓글(${newsFeed[i].comments_count})</a>
+    </li>`);
 }
+newsList.push("</ul>");
 
-container.appendChild(ul);
-container.appendChild(content);
+container.innerHTML = newsList.join("");
