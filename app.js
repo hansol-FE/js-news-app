@@ -21,13 +21,27 @@ function newsFeed() {
   const newsList = [];
 
   let template = `
-    <div class="container mx-auto p-4">
-        <h1>Hacker News</h1>
-        <ul>
-            {{__news_feed__}}
-        </ul>
-        <a href="#/page/{{__prev_page__}}">이전페이지</a>
-        <a href="#/page/{{__next_page__}}">다음페이지</a>
+    <div class="bg-gray-600 min-h-screen">
+        <div class="bg-white text-xl">
+            <div class="mx-auto px-4">
+                <div class="flex justify-between items-center py-6">
+                    <div class="flex justify-start">
+                        <h1 class="font-extrabold">Hacker News</h1>
+                    </div>
+                    <div class="items-center justify-end">
+                        <a href="#/page/{{__prev_page__}}" class="text-gray-500">이전페이지</a>
+                        <a href="#/page/{{__next_page__}}" class="text-gray-500 ml-4">다음페이지</a>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="p-4 text-2xl text-gray-700">
+            <ul>
+                {{__news_feed__}}
+            </ul>
+        </div>
     </div>
   `;
 
