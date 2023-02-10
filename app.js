@@ -112,7 +112,27 @@ function newsDetail() {
     </div>
 `;
 
-  container.innerHTML = template;
+  function makeComment(comments) {
+    const commentString = [];
+
+    for (let i = 0; i < comments.length; i++) {
+      commentString.push(`
+                <div style="padding-left: 40px;" class="mt-4">
+                    <div class="text-gray-400">
+                        <strong>${comments[i].user}</strong> ${comments[i].time_ago}
+                    </div>
+                    <p class="text-gray-700">${comments[i].content}</p>
+                </div>
+            `);
+    }
+
+    return commentString.join("");
+  }
+
+  container.innerHTML = template.replace(
+    " {{__comments__}}",
+    makeComment(newsContent.comments)
+  );
 }
 
 function router() {
